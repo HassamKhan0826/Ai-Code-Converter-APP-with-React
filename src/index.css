@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Tailwind turns each --color-* into utilities such as
+ * bg-ink-900, text-mist, border-ink-700, so the palette lives in one place.
+ */
+@theme {
+  --color-ink-950: #0e1426; /* page background */
+  --color-ink-900: #151d35; /* panels, editors */
+  --color-ink-800: #1b2440; /* panel headers, inputs */
+  --color-ink-700: #2b3759; /* borders */
+  --color-ink-600: #3a4870; /* hover borders */
+  --color-mist: #97a3c4; /* secondary text */
+  --color-paper: #e8ebf4; /* main text */
+  --color-marigold: #f4b63f; /* the one accent: primary action, focus */
+  --color-marigold-bright: #ffc95c;
+  --color-mint: #7fd8b0; /* success */
+  --color-coral: #f07f7a; /* errors, warnings */
+
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-paper font-sans antialiased;
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-marigold);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-marigold) 35%, transparent);
+  }
+}
+
+/* CodeMirror: fill the panel and use the app's code font size. */
+.code-editor,
+.code-editor .cm-editor {
+  height: 100%;
+}
+.code-editor .cm-editor {
+  font-size: 0.875rem;
+}
+.code-editor .cm-scroller {
+  line-height: 1.6;
+}
+.code-editor .cm-editor.cm-focused {
+  outline: none;
+}
+.code-editor .cm-placeholder {
+  color: var(--color-mist);
+  font-style: italic;
+}
+
+/* A thin marigold bar that slides while the AI is writing. */
+@keyframes progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+.progress-bar {
+  animation: progress-slide 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
