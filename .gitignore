@@ -1,0 +1,32 @@
+# Dependencies (re-created by `npm install` — never commit or zip these)
+node_modules
+
+# Build output (re-created by `npm run build`)
+dist
+dist-ssr
+
+# Environment files — may contain secrets. Only the example file is committed.
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
